@@ -1,10 +1,10 @@
 const express = require('express')
-const NoteController = require('./noteController')
+const noteController = require('./noteController')
 const noteRouter = express.Router()
 
-noteRouter.get('/', NoteController.getAllNote)
-noteRouter.post('/', NoteController.createNote)
-noteRouter.put('/', NoteController.editNote)
-noteRouter.delete('/', NoteController.deleteNote)
+noteRouter.get('/', noteController.getAllNote)
+noteRouter.post('/', noteController.createNote)
+noteRouter.put('/', noteController.editNote)
+noteRouter.delete('/', noteController.deleteNote)
 
 module.exports = noteRouter

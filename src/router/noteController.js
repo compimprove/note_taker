@@ -1,6 +1,6 @@
-const Note = require("../model/notes");
+const  Note  = require("../model/notes");
 
-const NoteController = {
+const noteController = {
   getAllNote: async (req, res, next) => {
     try {
       let notes = await Note.find({});
@@ -56,4 +56,4 @@ const NoteController = {
   }
 }
 
-module.exports = NoteController;
+module.exports = noteController;
