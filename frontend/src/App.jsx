@@ -1,7 +1,7 @@
-import "./App.css";
-import React from "react";
-import NoteScreen from "./screen/NoteScreen";
-import { NoteProvider } from "./context/NoteContext";
+import './App.css';
+import React from 'react';
+import NoteScreen from './screen/NoteScreen';
+import { NoteProvider } from './context/NoteContext';
 
 function App() {
   return (

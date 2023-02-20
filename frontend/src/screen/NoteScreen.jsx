@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from "react";
-import NoteEditor from "../components/NoteEditor";
-import NoteHeader from "../components/NoteHeader";
-import NoteSideBar from "../components/NoteSideBar";
-import NoteSquare from "../components/NoteSquare";
-import { NoteContext } from "../context/NoteContext";
-import { DisplayType } from "../enum";
+import React, { useContext, useEffect, useState } from 'react';
+import NoteEditor from '../components/NoteEditor';
+import NoteHeader from '../components/NoteHeader';
+import NoteSideBar from '../components/NoteSideBar';
+import NoteSquare from '../components/NoteSquare';
+import { NoteContext } from '../context/NoteContext';
+import { DisplayType } from '../enum';
 
 function NoteScreen() {
   const { getAllNotesAndChooseFirstIfHas, allNotes } = useContext(NoteContext);
