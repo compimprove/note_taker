@@ -1,4 +1,4 @@
-const  Note  = require("../model/notes");
+const Note = require("../model/notes");
 
 const noteController = {
   getAllNote: async (req, res, next) => {
@@ -8,6 +8,7 @@ const noteController = {
         _id: note._id,
         title: note.title,
         body: note.body,
+        createdAt: note.createdAt
       }))
       res.json(notes);
     } catch (error) {
@@ -17,9 +18,9 @@ const noteController = {
   createNote: async (req, res, next) => {
     try {
       let { title = "", body = "" } = req.body;
-      let notes = new Note({ title, body });
-      await notes.save();
-      res.status(201).send();
+      let note = new Note({ title, body });
+      await note.save();
+      res.json({ _id: note._id });
     } catch (error) {
       next(error)
     }
@@ -29,11 +30,16 @@ const noteController = {
     try {
       let { title = "", body = "", _id } = req.body;
       let filter = { _id };
-      let savedNote = await Note.findOneAndUpdate(filter, { title, body });
+      let savedNote = await Note.findOneAndUpdate(filter, { title, body }, { new: true });
       if (!savedNote) {
         return res.status(404).send();
       }
-      res.status(200).send();
+      res.status(200).json({
+        _id: savedNote._id,
+        title: savedNote.title,
+        body: savedNote.body,
+        createdAt: savedNote.createdAt
+      });
     } catch (error) {
       next(error)
     }
@@ -41,8 +47,8 @@ const noteController = {
 
   deleteNote: async (req, res, next) => {
     try {
-      let { _id } = req.body;
-      let filter = { _id };
+      let { noteId } = req.params;
+      let filter = { _id: noteId };
       let deletedNote = await Note.findOneAndDelete(filter);
       if (!deletedNote) {
         return res.status(404).send();

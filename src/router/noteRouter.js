@@ -5,6 +5,6 @@ const noteRouter = express.Router()
 noteRouter.get('/', noteController.getAllNote)
 noteRouter.post('/', noteController.createNote)
 noteRouter.put('/', noteController.editNote)
-noteRouter.delete('/', noteController.deleteNote)
+noteRouter.delete('/:noteId', noteController.deleteNote)
 
 module.exports = noteRouter
