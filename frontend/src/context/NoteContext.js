@@ -18,6 +18,8 @@ export function NoteProvider({ children }) {
       if (res.data.length > 0) {
         setChoosenNoteId(res.data[0]._id);
       }
+    } else {
+      setAllNotes({ map: new Map() })
     }
   }
 
@@ -29,6 +31,8 @@ export function NoteProvider({ children }) {
         mapAllNotes.set(_note._id, _note);
       })
       setAllNotes({ map: mapAllNotes })
+    } else {
+      setAllNotes({ map: new Map() })
     }
   }
   const updateNoteInState = (id, note) => {
