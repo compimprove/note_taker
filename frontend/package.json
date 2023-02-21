@@ -16,10 +16,9 @@
   },
   "scripts": {
     "start": "PORT=3001 react-scripts start",
-    "build": "react-scripts build",
+    "build": "BUILD_PATH='../assets' react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint ."
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -41,9 +40,6 @@
   },
   "proxy": "http://localhost:3000",
   "devDependencies": {
-    "eslint": "^8.34.0",
-    "eslint-config-google": "^0.14.0",
-    "eslint-plugin-react": "^7.32.2",
     "tailwindcss": "^3.2.7"
   }
 }

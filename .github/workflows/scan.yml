@@ -1,0 +1,15 @@
+name: Testing and Linting
+on: [push]
+jobs:
+  Testing-And-Linting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Setup Node verion 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm install
+      - run: npm run lint
+      - run: npm run test

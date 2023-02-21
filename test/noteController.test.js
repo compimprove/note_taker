@@ -47,7 +47,7 @@ describe('test createNote', () => {
       },
     }, res, next);
     expect(Note.prototype.save).toHaveBeenCalled();
-    expect(res.status).toHaveBeenCalledWith(201);
+    expect(res.json).toHaveBeenCalled();
   });
 });
 

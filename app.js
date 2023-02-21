@@ -10,6 +10,7 @@ const { errorResponder, errorLogger } =
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(express.static('assets'));
 app.use(express.json());
 app.use(morgan(':date[clf] :method :url :status - :response-time ms'));
 app.use('/api/notes', noteRouter);
