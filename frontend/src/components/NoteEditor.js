@@ -30,19 +30,30 @@ export default function NoteEditor() {
   let timeoutId;
   const handleTyping = () => {
     clearTimeout(timeoutId);
-    timeoutId = setTimeout(handleTimeout, AUTO_SAVE_TIME_OUT);
-  };
-  const handleTimeout = () => {
-    submitNote();
-  };
-  const submitNote = async () => {
-    const updatedNote = await updateNote({
-      _id: choosenNoteId,
-      title: getValues('title'),
-      body: getValues('body'),
+    setTimeout(() => {
+      timeoutId = setTimeout(
+          handleTimeout.bind(
+              null,
+              choosenNoteId,
+              getValues('title'),
+              getValues('body')),
+          AUTO_SAVE_TIME_OUT);
     });
-    updateNoteInState(updatedNote._id, updatedNote);
   };
+  const handleTimeout = (choosenNoteId, title, body) => {
+    const note = allNotes.map.get(choosenNoteId);
+    updateNoteInState(note._id, {
+      ...note,
+      title: title,
+      body: body,
+    });
+    updateNote({
+      _id: choosenNoteId,
+      title: title,
+      body: body,
+    });
+  };
+
 
   useEffect(() => {
     const note = allNotes.map.get(choosenNoteId);
@@ -56,7 +67,13 @@ export default function NoteEditor() {
   useEffect(() => {
     return () => {
       clearTimeout(timeoutId);
-      if (choosenNoteId) submitNote();
+      if (choosenNoteId) {
+        updateNote({
+          _id: choosenNoteId,
+          title: getValues('title'),
+          body: getValues('body'),
+        });
+      }
     };
   }, []);
 
